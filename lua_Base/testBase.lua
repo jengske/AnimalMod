@@ -11,3 +11,4 @@
 -- 
 -- Copyright (C) 2011 - 2015 international-modding Dev Team
 -- 
+AnimalMod = {};
