@@ -3,9 +3,9 @@
 --
 -- @authors: Dirk Peeters / Jengske_BE / international-modding
 -- @version: 0.01 beta
--- @website: http://courseplay.github.io/courseplay/
+-- @website: http://jengske.github.io/AnimalMod/
 -- @date:    2015
--- @history: http://courseplay.github.io/courseplay/en/changelog/index.html
+-- @history: 
 -- @devTeam :
 -- Dirk Peeters: lua, 3d model & animation, xml
 -- 
