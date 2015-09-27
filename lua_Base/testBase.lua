@@ -1,0 +1,13 @@
+--
+-- AnimalMod
+--
+-- @authors: Dirk Peeters / Jengske_BE / international-modding
+-- @version: 0.01 beta
+-- @website: http://courseplay.github.io/courseplay/
+-- @date:    2015
+-- @history: http://courseplay.github.io/courseplay/en/changelog/index.html
+-- @devTeam :
+-- Dirk Peeters: lua, 3d model & animation, xml
+-- 
+-- Copyright (C) 2011 - 2015 international-modding Dev Team
+-- 
