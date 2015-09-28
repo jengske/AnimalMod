@@ -31,7 +31,7 @@ local filesToLoad = { -- place here new functions or addons for the mod, we will
 
 local function letsStart() -- load all files needed by the AnimalMod
   local numFilesToLoad, numFilesLoaded = #(filesToLoad) + 3, 3;
-  for _,file in ipairs(fileList) do
+  for _,file in ipairs(filesToLoad) do
 		local filePath = luaDir .. file;
 
 		assert(fileExists(filePath), '\tAnimalMod ERROR: could not load file ' .. filePath);
