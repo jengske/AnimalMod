@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?> 
+<!-- 
+This is the base xml for the animals of the animalMod by jengske_BE,
+you only need to adjust the mesh in the model and make sure its in the correct position in the hirachy
+Version: 0.5 development
+copyright (c) 2011-2016 Peeters Dirk 
+-->
+<vehicle type="animal">
+	<annotation>Copyright 2015(C) Peeters Dirk, All Rights Reserved.</annotation>
+    <name>
+        <en>Horse</en>
+        <de>Pherde</de>
+    </name>
+    <description></description>
+    <typeDesc>
+        <en>Horse</en>
+        <de>Pherde</de>
+    </typeDesc>
+	
+    <filename>i3d/animal_ProtoType01.i3d</filename>
+	<!-- --------------  vehicle configuration ------------------------------------------- -->
+     <size width="3" length="3" lengthOffset="-1.0" />
+	 <!-- movement -->
+	 <wheels autoRotateBackSpeed="2.5">
+		<wheel rotSpeed="40" rotMax="30" rotMin="-30" repr="0>24" driveNode="0>24|0" radius="0.585" width="0.12" deltaY="0.1" suspTravel="0.12" spring="20" damper="34" mass="0.4" longitudalStiffness="0.9" lateralStiffness="2" hasTyreTracks="true" />
+        <wheel rotSpeed="40" rotMax="30" rotMin="-30" repr="0>23" driveNode="0>23|0" radius="0.585" width="0.12" deltaY="0.1" suspTravel="0.12" spring="20" damper="34" mass="0.4" longitudalStiffness="0.9" lateralStiffness="2" hasTyreTracks="true" />
+        
+		<wheel rotSpeed="0" repr="0>26"  radius="0.585" suspTravel="0.12" initialCompression="70" spring="20" damper="34" mass="0.6" longitudalStiffness="0.9" lateralStiffness="2" hasTyreTracks="true"/>
+		<wheel rotSpeed="0" repr="0>25"  radius="0.585" suspTravel="0.12" initialCompression="70" spring="20" damper="34" mass="0.6" longitudalStiffness="0.9" lateralStiffness="2" hasTyreTracks="true"/>
+	</wheels>
+	
+	<dynamicallyLoadedParts>
+       <dynamicallyLoadedPart node="1|0" linkNode="0>24|0" filename="i3d/wheels/wheels.i3d" />
+        <dynamicallyLoadedPart node="1|1" linkNode="0>23|0" filename="i3d/wheels/wheels.i3d" />
+        <dynamicallyLoadedPart node="1|0" linkNode="0>26"     filename="i3d/wheels/wheels.i3d" />
+        <dynamicallyLoadedPart node="1|1" linkNode="0>25"     filename="i3d/wheels/wheels.i3d" />
+    </dynamicallyLoadedParts>
+		
+	<differentials>
+        <differential torqueRatio="0.5" maxSpeedRatio="1.3" wheelIndex1="0" wheelIndex2="1" /> <!-- front left-right -->
+        <differential torqueRatio="0.5" maxSpeedRatio="1.8" wheelIndex1="2" wheelIndex2="3" /> <!-- back left-right -->
+        <differential torqueRatio="0.5" maxSpeedRatio="1.2" differentialIndex1="0" differentialIndex2="1" /> <!-- front-back -->
+    </differentials>
+	
+	<motor torqueScale="2.455" minRpm="1000" maxRpm="2200" maxBackwardSpeed="15" brakeForce="40" lowBrakeForceScale="0.9" lowBrakeForceSpeedLimit="0.8" minForwardGearRatio="19.5" maxForwardGearRatio="130" minBackwardGearRatio="50" maxBackwardGearRatio="130">
+        <torque normRpm="0.45" torque="0.9"/>
+        <torque normRpm="0.5" torque="0.97"/>
+        <torque normRpm="0.59" torque="1"/>
+        <torque normRpm="0.72" torque="1"/>
+        <torque normRpm="0.86" torque="0.88"/>
+        <torque normRpm="1" torque="0.72"/>
+    </motor>
+	
+	<accelerationSpeed maxAcceleration="0.05" deceleration="0.01" backwardDeceleration="0.7" />
+		
+	<speedLimit value="20" />
+	<motorStartDuration>2500</motorStartDuration>
+	<fuelCapacity>640</fuelCapacity>
+    <fuelUsage>128</fuelUsage>
+	<aiTrafficCollisionTrigger index="0>6" />
+	<enterReferenceNode index="0>"/>
+    <exitPoint index="0>18"/>
+	
+    <massScale value="0.001" />
+	<!-- to do -->
+	<!--<attacherJoints>
+        <attacherJoint index="0>12" allowsJointLimitMovement="false" allowsLowering="false" maxRotLimit="0 0 0" jointType="semitrailer" enableCollision="true" />
+    </attacherJoints>-->
+	
+	<steering index="0>22|0" indoorRotation="540" outdoorRotation="45" />
+	
+	
+	<capacity>400</capacity>
+	
+	<fillTypes fruitTypes="wheat barley grass wheat_windrow barley_windrow grass_windrow"/>
+	<fillTypes fillTypes="wheat barley grass wheat_windrow barley_windrow grass_windrow"/>
+	
+	<fillLitersPerSecond>100</fillLitersPerSecond>
+
+	<workAreas pickupFillScale="0.3">
+        <workArea startIndex="0>2" widthIndex="0>3" heightIndex="0>13" dropWindrow="false" />
+    </workAreas>
+	
+	<groundReferenceNodes>
+        <groundReferenceNode index="0>1" threshold="0.35" />
+    </groundReferenceNodes>
+	
+	<mowerToggleWindrowDrop enableText="disable_grass_pickup" disableText="enable_grass_pickup" startEnabled="false" animationName="enableOpenMovers" animationEnableSpeed="0.5" animationDisableSpeed="-0.5" />
+    
+	<cutAreas cutStart = "0>2" cutEnd = "0>3" />
+	
+	<cameras count="2">
+        <camera1 index="0>17|0" rotatable="true" rotateNode="0>17" limit="true" useWorldXZRotation="true" rotMinX="-1.4" rotMaxX="1" transMin="4" transMax="35" >
+            <raycastNode index="0>14"/>
+            <raycastNode index="0>15"/>
+        </camera1>
+        <camera2 index="0>16" rotatable="true" limit="true" rotMinX="-1.1" rotMaxX="0.4" transMin="0" transMax="0" useMirror="false" isInside="true" />
+    </cameras>
+	
+	<characterNode index="0>21|0" cameraMinDistance="1.5" filename="$dataS2/character/player/player.i3d" characterMesh="1" characterGloves="2" characterSkin="0" spineNode="0|0" leftArmIKChainId="leftArm" rightArmIKChainId="rightArm" spineRotation="180 0 105" >
+        <ikChains>
+            <ikChain id="rightFoot" target="0>21|1" targetOffset="0 0.1 0" alignToTarget="true" isDirtyOnLoad="true" >
+                <node index="0|1" />
+                <node index="0|1|0"     minRx="0" maxRx="0" minRy="-30" maxRy="30" minRz="0"   maxRz="90" />
+                <node index="0|1|0|0"   minRx="0" maxRx="0" minRy="0"   maxRy="0"  minRz="-100" maxRz="-7" />
+                <node index="0|1|0|0|0" />
+            </ikChain>
+            <ikChain id="leftFoot" target="0>21|2" targetOffset="0 0.1 0" alignToTarget="true" isDirtyOnLoad="true">
+                <node index="0|2"     />
+                <node index="0|2|0"     minRx="0" maxRx="0" minRy="-30" maxRy="30" minRz="0"   maxRz="90" />
+                <node index="0|2|0|0"   minRx="0" maxRx="0" minRy="0"   maxRy="0"  minRz="-100" maxRz="-7" />
+                <node index="0|2|0|0|0" />
+            </ikChain>
+            <ikChain id="rightArm" target="0>22|0|0" targetOffset="0.025 0.066 0" alignToTarget="true" isDirtyOnLoad="true">
+                <node index="0|0|0|1" />
+                <node index="0|0|0|1|0" minRx="-50" maxRx="50" minRy="-50" maxRy="50" minRz="-80" maxRz="80" />
+                <node index="0|0|0|1|0|0" />
+                <node index="0|0|0|1|0|0|0" />
+                <rotationNode index="0|0|0|1|0|0|0|0" rotation="0 0 -60" />
+                <rotationNode index="0|0|0|1|0|0|0|0|0" rotation="0 0 -60" />
+                <rotationNode index="0|0|0|1|0|0|0|1" rotation="-90 20 -40" />
+                <rotationNode index="0|0|0|1|0|0|0|1|0" rotation="0 0 -40" />
+            </ikChain>
+            <ikChain id="leftArm" target="0>22|0|1" targetOffset="-0.025 0.066 0" alignToTarget="true" isDirtyOnLoad="true">
+                <node index="0|0|0|2" />
+                <node index="0|0|0|2|0" minRx="-50" maxRx="50" minRy="-50" maxRy="50" minRz="-80" maxRz="80" />
+                <node index="0|0|0|2|0|0" />
+                <node index="0|0|0|2|0|0|0" />
+                <rotationNode index="0|0|0|2|0|0|0|0" rotation="0 0 -60" />
+                <rotationNode index="0|0|0|2|0|0|0|0|0" rotation="0 0 -60" />
+                <rotationNode index="0|0|0|2|0|0|0|1" rotation="-90 20 -40" />
+                <rotationNode index="0|0|0|2|0|0|0|1|0" rotation="0 0 -40" />
+            </ikChain>
+        </ikChains>
+    </characterNode>
+	
+    <components count="1">
+        <component1 centerOfMass="0.00 0.00 0.00" solverIterationCount="4" />
+    </components>
+	
+	<!-- --------------  end vehicle configuration ------------------------------------------- -->
+	
+	<!-- --------------  AnimalMod configuration ------------------------------------------- -->
+	<animalMod isAnimated = "false">
+		<animals>
+			<animal sort="horse" gender ="female" maxAge = "5" startAge = "0" isSick = "false" />
+		</animals>
+		<Breeding>
+			<maxCalf>1</maxCalf>
+			<breedAge>3</breedAge>
+			<breedPeriod>2</breedPeriod>
+		</Breeding>
+				
+		<stomage>
+			<input fillTypes ="wheat barley grass wheat_windrow barley_windrow grass_windrow water" />
+			<output filltypes = "manure liquidManure"/>
+			<waterCapacity> 50 </waterCapacity>
+			<grassCapacity> 50 </grassCapacity>
+			<wheatCapacity> 50 </wheatCapacity>
+			<manureCapacity> 50 </manureCapacity>
+			<liquidManureCapacity> 50 </liquidManureCapacity>
+		</stomage>
+	
+		<feedTypes> 
+			<allowedFillType type = "grass"/>
+			<allowedFillType type = "wheat"/>
+			<allowedFillType type = "barley"/>
+			<allowedFillType type = "water"/>
+		</feedTypes>
+		
+		<refpoints> 
+			<points groundContact = "0>1" mouthNode = "0>0|0"/>
+		</refpoints>		
+		
+		<convertedFruits>
+			<convertedFruit input="grass" output="manure"/>
+			<convertedFruit input="wheat" output="manure"/>
+			<convertedFruit input="barley" output="manure"/>
+			<convertedFruit input="water" output="liquidManure"/>
+		</convertedFruits>
+	
+	</animalMod>
+	
+	<!-- -------------- end AnimalMod configuration ------------------------------------------- -->	
+		
+</vehicle>
