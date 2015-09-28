@@ -1,13 +1,18 @@
-AnimalMod.project = {"Dirk Peeters / Jengske_BE / international-modding" , "tester"};
+AnimalMod.project = "AnimalMod";
 --
-AnimalMod.authors = AnimalMod
+AnimalMod.idea = "Dirk Peeters / Jengske_BE";
+AnimalMod.authors = {"Dirk Peeters / Jengske_BE / international-modding" , "tester"};
 AnimalMod.version = "0.01 beta";
 AnimalMod.website = "http://jengske.github.io/AnimalMod/";
-AnimalMod.date =    "2015";
+AnimalMod.startDate = "2015";
 AnimalMod.history = "";
-AnimalMod.devTeam = {
+AnimalMod.team = {
   "Dirk Peeters: lua, 3d model & animation, xml",
-  "tester"
+  ""
   };
 -- 
 AnimalMod.Copyright = "Copyright (C) 2011 - 2015 international-modding Dev Team";
+
+AnimalMod.header = "idea =  " ..AnimalMod.idea, "Author =  " ..AnimalMod.authors[1];
+
+print(AnimalMod.header);
