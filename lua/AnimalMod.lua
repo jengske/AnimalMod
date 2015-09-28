@@ -39,6 +39,8 @@ local function letsStart() -- load all files needed by the AnimalMod
 	
 		numFilesLoaded = numFilesLoaded + 1;
 	end;
+	
+	print("-------------------------------------------------------------------------------------------------------------------------------------------------------");
 	print(AnimalMod.header); -- load in the header for the project only once, all info about the project sits in this file
 	print(('### AnimalMod: initialized %d/%d files (v%s)'):format(numFilesLoaded, numFilesToLoad, AnimalMod.version));
  	print("-------------------------------------------------------------------------------------------------------------------------------------------------------");
