@@ -26,7 +26,7 @@ local ModName = AnimalMod.modName;
 -- files needed by the AnimalMod: you need to name the files like what thy do, example: breed.lua handles the breeding part of the mod.
 local filesToLoad = { -- place here new functions or addons for the mod, we will load these by number order.
   [1] = 'header.lua', -- hold the project & team information
-  [2] = 'setup.lua'}; -- setup default table structure
+  [2] = 'Utils.lua'}; -- Utils default functions to make live easy
 
 
 local function letsStart() -- load all files needed by the AnimalMod
@@ -41,5 +41,7 @@ local function letsStart() -- load all files needed by the AnimalMod
 	end;
 	
 	print(('### AnimalMod: initialized %d/%d files (v%s)'):format(numFilesLoaded, numFilesToLoad, AnimalMod.version));
-  -- print(AnimalMod.header); -- load in the header for the project only once, all info about the project sits in this file
-  end;
+  print(AnimalMod.header); -- load in the header for the project only once, all info about the project sits in this file
+end;
+
+letsStart();
