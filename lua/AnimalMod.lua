@@ -44,7 +44,9 @@ local ModName = AnimalMod.modName;
 local filesToLoad = { -- place here new functions or addons for the mod, we will load these by number order.
   [1] = 'header.lua', -- hold the project & team information
   [2] = 'database.lua', -- setup the main table structure
-  [3] = 'Utils.lua'}; -- Utils default functions to make live easy
+  [3] = 'States.lua', -- states system
+  [4] = 'Names.lua', -- naming system
+  [5] = 'Utils.lua'}; -- Utils default functions to make live easy
 
 
 local function letsStart() -- load all files needed by the AnimalMod
