@@ -18,9 +18,9 @@
 <iconFilename>img/store.dds</iconFilename>
 <multiplayer supported="true"/>
     <extraSourceFiles>
-        <!--<sourceFile filename="scripts/AnimalMod.lua"/>-->
+        <sourceFile filename="lua/AnimalMod.lua"/>
     </extraSourceFiles> 
-	<specializations>
+<!--[[<specializations>
 	   <specialization name="animals" className="Animal" filename="scripts/Animal.lua"/>
    </specializations> 
 	<vehicleTypes>
@@ -42,7 +42,7 @@
     </vehicleTypes>
 	<AnimalTypes>
 		
-	</AnimalTypes>
+	</AnimalTypes>]]
 <storeItems>
 	<storeItem>
             <name>Horse</name>
@@ -58,7 +58,7 @@
             <brand>Animal</brand>
             <category>animals</category>
     </storeItem>
-</storeItems>
+</storeItems>-->
 
 </modDesc>
 
