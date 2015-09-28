@@ -3,7 +3,7 @@
 -- file is under construction
 -- do not modify
 local a = AnimalMod; -- just to shorten code
-local g = g_currentMission.husbandries;
+--local g = g_currentMission.husbandries; need to be in loadMap()
 -- stats -- to be synced with our general structure
 a.stats = {}; -- table to store information about the mod
 a.stats.storages = {}; -- info about our storages
@@ -15,7 +15,7 @@ a.stats.players = {}; -- info about our players
 -- general table structure to keep track of all --
 a.storages = {}; -- info about our storages /storage.lua 
 a.animals = {}; -- info about our animals / animalType.lua
-a.husbandries = g;
+--a.husbandries = g;
 a.animals.g_animals = {}; -- game animals
 a.animals.f_animals = {}; -- fillType animals
 a.animals.o_animals = {}; -- objectType animals
