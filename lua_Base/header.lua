@@ -11,8 +11,7 @@ AnimalMod.team = {
   ""
   };
 -- 
-AnimalMod.Copyright = "Copyright (C) 2011 - 2015 international-modding Dev Team";
+AnimalMod.Copyright = "Copyright (C) 2011 - 2015 - Dirk Peeters - international-modding Team";
 
-AnimalMod.header = "idea =  " ..AnimalMod.idea, "Author =  " ..AnimalMod.authors[1];
-
+AnimalMod.header = "idea:  " ..AnimalMod.idea .."\n" .."Author:  " ..AnimalMod.authors[1] .."\n" .."Version: " ..AnimalMod.version .."\n" .."ProjectSite: " ..AnimalMod.website .."\n" .."StartDate: " ..AnimalMod.startDate .."\n" .."Team: \n" ..AnimalMod.team[1] .."\n" ..AnimalMod.team[2];
 print(AnimalMod.header);
