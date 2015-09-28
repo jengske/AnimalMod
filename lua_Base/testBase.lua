@@ -1,14 +1,16 @@
---
--- AnimalMod
---
--- @authors: Dirk Peeters / Jengske_BE / international-modding
--- @version: 0.01 beta
--- @website: http://jengske.github.io/AnimalMod/
--- @date:    2015
--- @history: 
--- @devTeam :
--- Dirk Peeters: lua, 3d model & animation, xml
--- 
--- Copyright (C) 2011 - 2015 international-modding Dev Team
--- 
+
 AnimalMod = {};
+AnimalMod.baseDir = g_currentModDirectory;
+local baseDir = AnimalMod.baseDir;
+AnimalMod.XMLdir = baseDir
+AnimalMod.
+AnimalMod.
+AnimalMod.
+
+local filesToLoad = {
+  [1] = 'header.lua',
+  [2] = 'setup.lua'};
+local function letsStart()
+  
+  -- print(AnimalMod.header); -- load in the header for the project only once, all info about the project sits in this file
+  end;
