@@ -65,6 +65,6 @@ local function letsStart() -- load all files needed by the AnimalMod
 end;
 
 letsStart();
-for k, v in pairs(AniamlMod) do
+for k, v in pairs(AnimalMod) do
 	print(k, " = ", tostring(v));
 end;
