@@ -3,6 +3,11 @@ AnimalMod = {}; -- projectName/modName
 AnimalMod.ClassName = "AnimalMod";
 -- directory structure
 AnimalMod.baseDir = g_currentModDirectory;
+-- file handling inspired by courseplay.lua - Jakob Tischler / Thomas Gärtner / Satissis
+if AnimalMod.baseDir:sub(-1) ~= '/' then
+	AnimalMod.baseDir = AnimalMod.baseDir .. '/';
+end;
+
 local baseDir = AnimalMod.baseDir;
 AnimalMod.XMLdir = baseDir .."xml/";
 local xmlDir = AnimalMod.XMLdir;
@@ -25,6 +30,16 @@ local filesToLoad = { -- place here new functions or addons for the mod, we will
 
 
 local function letsStart() -- load all files needed by the AnimalMod
-  
+  local numFilesToLoad, numFilesLoaded = #(filesToLoad) + 3, 3;
+  for _,file in ipairs(fileList) do
+		local filePath = luaDir .. file;
+
+		assert(fileExists(filePath), '\tAnimalMod ERROR: could not load file ' .. filePath);
+		source(filePath);
+	
+		numFilesLoaded = numFilesLoaded + 1;
+	end;
+	
+	print(('### AnimalMod: initialized %d/%d files (v%s)'):format(numFilesLoaded, numFilesToLoad, AnimalMod.version));
   -- print(AnimalMod.header); -- load in the header for the project only once, all info about the project sits in this file
   end;
