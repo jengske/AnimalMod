@@ -1,6 +1,6 @@
 
 AnimalMod.Utils = {};
-
+-- class inherits --
 function AnimalMod.Utils:inheritsFrom( baseClass )
 
     local new_class = {}
@@ -46,6 +46,30 @@ function AnimalMod.Utils:inheritsFrom( baseClass )
     end
 
     return new_class
-end
+end;
+
+-- to do: sound system: create a pool for sounds to be used during gameplay
+AnimalMod.animal.soundPools = {};
+AnimalMod.animal.soundPoolsUsed = {};
+
+function AnimalMod.Utils.addSound(animalType, fileName, volume, isplaying )
+    if(AnimalMod.animal.sounds[animalType] == nil) then
+        AnimalMod.animal.sounds[animalType] = animalType;
+    end;
+end;
+
+function AnimalMod.Utils:createSpool(animalType, amount)
+    local s = "soundPools";
+    if(AnimalMod.animal[soundPools] == not nil)then
+        print("AnimalMod ERROR: We already have a soundpool for this animalType.");
+        return;
+    end;
+    
+    if(AnimalMod.animal[soundPools][animalType] == nil)then
+        AnimalMod.animal[soundPools][animalType] = animalType;
+    else
+        return false;
+    end;
+end;
 
 AnimalMod.Utils:inheritsFrom( AnimalMod );
