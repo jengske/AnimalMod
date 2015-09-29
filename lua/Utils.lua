@@ -49,6 +49,10 @@ function AnimalMod.Utils:inheritsFrom( baseClass )
 end;
 
 -- to do: sound system: create a pool for sounds to be used during gameplay
+-- we go use the pools to load sounds to the animals from out the AnimalMod/sound/animalType root.
+-- idea is to also load sounds on animals where there is no sound defined on the animal.zip.
+-- maby we go create a AnimalMod.soundUtils for handle sound creations, this i must see during development
+-- the utils files will be evaluated
 AnimalMod.animal.soundPools = {};
 AnimalMod.animal.soundPoolsUsed = {};
 
