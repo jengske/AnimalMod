@@ -49,7 +49,7 @@ local filesToLoad = { -- place here new functions or addons for the mod, we will
   [3] = 'States.lua', -- states system
   [4] = 'Names.lua', -- naming system
   [5] = 'Utils.lua',-- Utils default functions to make live easy
-  [6] = 'SoundUtils' -- Sound manager
+  [6] = 'SoundUtils.lua' -- Sound manager
   }; 
 
 
