@@ -1,3 +1,8 @@
+-- AnimalMod: States.lua
+-- Author: Dirk Peeters
+-- CopyRight: (c) 2011 - 2016 Peeters Dirk
+--------------------------------------------------
+
 -- statemachine --------------------------------
 -- general -- 0
 AnimalMod.STATE_IDLE = 0;
