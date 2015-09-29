@@ -1,4 +1,7 @@
-
+-- AnimalMod: Utils.lua
+-- Author: Dirk Peeters
+-- CopyRight: (c) 2011 - 2016 Peeters Dirk
+--------------------------------------------------
 AnimalMod.Utils = {};
 -- class inherits --
 function AnimalMod.Utils:inheritsFrom( baseClass )
