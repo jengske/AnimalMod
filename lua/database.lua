@@ -15,24 +15,25 @@ a.stats.players = {}; -- info about our players
 -- general table structure to keep track of all --
 a.storages = {}; -- info about our storages /storage.lua 
 a.animals = {}; -- info about our animals / animalType.lua
+a.animal.sounds = {}; -- table to store sounds *.wav
 --a.husbandries = g;
 a.animals.g_animals = {}; -- game animals
 a.animals.f_animals = {}; -- fillType animals
 a.animals.o_animals = {}; -- objectType animals
 a.animals.v_animals = {}; -- vehicleType animals
 a.animals.p_animals = {}; -- placeable animals
-
-a.triggers = {}; -- info about the animal areas defined in the map, not the animals it self /AnimalModTrigger.lua
 a.players = {}; -- info about our players
 a.allowedFeedTypes = {}; -- allowed feed types
 a.production = {}; 
 
--- map stuff --
+-- map stuff -- animalArea.i3d
 a.spawnPlaces = {};
 a.eatPlaces = {};
 a.breedPlaces = {};
 a.animalAreas = {}; -- info about the animal areas defined in the map / animalArea.lua
 a.splines = {}; 
+a.triggers = {}; -- info about the animal areas defined in the map, not the animals it self /AnimalModTrigger.lua 
+a.animations ={}; -- table to hold map animations
 
 -- gui -- no scripts made just prepairing
 a.gui = {}; -- gui holder
