@@ -1,3 +1,7 @@
+-- AnimalMod: header.lua
+-- Author: Dirk Peeters
+-- CopyRight: (c) 2011 - 2016 Peeters Dirk
+--------------------------------------------------
 AnimalMod.project = "AnimalMod";
 --
 AnimalMod.idea = "Dirk Peeters / Jengske_BE";
