@@ -1,3 +1,8 @@
+-- AnimalMod: SoundUtils.lua
+-- Author: Dirk Peeters
+-- CopyRight: (c) 2011 - 2016 Peeters Dirk
+--------------------------------------------------
+
 -- this is our main structure for the AnimalMod not the animals itself.
 -- all events, animaltypes and so on need to be defined in these tables
 -- file is under construction
