@@ -6,24 +6,24 @@ AnimalMod.Utils:inheritsFrom( AnimalMod );
 -- we go create a AnimalMod.soundUtils for handle sound creations, this i must see during development
 -- the utils files will be evaluated
 
-AnimalMod.animal.soundPools = {};
-AnimalMod.animal.soundPoolsUsed = {};
+AnimalMod.animals.soundPools = {};
+AnimalMod.animals.soundPoolsUsed = {};
 
 function AnimalMod.SoundUtils.addSound(animalType, fileName, volume, isplaying )
-    if(AnimalMod.animal.sounds[animalType] == nil) then
-        AnimalMod.animal.sounds[animalType] = animalType;
+    if(AnimalMod.animals.sounds[animalType] == nil) then
+        AnimalMod.animals.sounds[animalType] = animalType;
     end;
 end;
 
 function AnimalMod.SoundUtils.createSpool(animalType, amount)
     local s = "soundPools";
-    if(AnimalMod.animal[soundPools] == not nil)then
+    if(AnimalMod.animals[soundPools] == not nil)then
         print("AnimalMod ERROR: We already have a soundpool for this animalType.");
         return;
     end;
     
-    if(AnimalMod.animal[soundPools][animalType] == nil)then
-        AnimalMod.animal[soundPools][animalType] = animalType;
+    if(AnimalMod.animals[soundPools][animalType] == nil)then
+        AnimalMod.animals[soundPools][animalType] = animalType;
     else
         return false;
     end;
