@@ -1,5 +1,5 @@
 AnimalMod.SoundUtils = {};
-
+AnimalMod.Utils:inheritsFrom( AnimalMod );
 -- to do: sound system: create a pool for sounds to be used during gameplay
 -- we go use the pools to load sounds to the animals from out the AnimalMod/sound/animalType root.
 -- idea is to also load sounds on animals where there is no sound defined on the animal.zip.
