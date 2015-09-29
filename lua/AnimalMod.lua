@@ -26,16 +26,18 @@ end;
 --end;
 
 local baseDir = AnimalMod.baseDir;
-AnimalMod.XMLdir = baseDir .."xml/";
+AnimalMod.XMLdir = baseDir .."xml/"; -- xml directory
 local xmlDir = AnimalMod.XMLdir;
-AnimalMod.LUAdir = baseDir .."lua/";
+AnimalMod.LUAdir = baseDir .."lua/"; -- lua directory
 local luaDir = AnimalMod.LUAdir;
-AnimalMod.I3Ddir = baseDir .."i3d/";
+AnimalMod.I3Ddir = baseDir .."i3d/"; -- i3d directory
 local i3dDir = AnimalMod.I3Ddir;
-AnimalMod.IMGdir = baseDir .."img/";
+AnimalMod.IMGdir = baseDir .."img/"; -- img directory
 local imgDir = AnimalMod.IMGdir;
-AnimalMod.TRGdir = baseDir .."triggers/";
+AnimalMod.TRGdir = baseDir .."triggers/"; -- trigger directory
 local trgDir = AnimalMod.TRGdir;
+AnimalMod.WAVdir = baseDir .."sounds/"; -- sound directory, must be ordered sounds/animaltype
+local wavDir = AnimalMod.WAVdir;
 
 AnimalMod.modName = g_currentModName;
 local ModName = AnimalMod.modName;
@@ -46,7 +48,9 @@ local filesToLoad = { -- place here new functions or addons for the mod, we will
   [2] = 'database.lua', -- setup the main table structure
   [3] = 'States.lua', -- states system
   [4] = 'Names.lua', -- naming system
-  [5] = 'Utils.lua'}; -- Utils default functions to make live easy
+  [5] = 'Utils.lua',-- Utils default functions to make live easy
+  [6] = 'SoundUtils' -- Sound manager
+  }; 
 
 
 local function letsStart() -- load all files needed by the AnimalMod
@@ -70,3 +74,19 @@ letsStart();
 for k, v in pairs(AnimalMod) do
 	print(k, " = ", tostring(v));
 end;
+local function checkSoundDir()
+		if (wavDir ~= nil)then
+			print("AnimalMod error: no sounds folder found");
+			return false;
+		else
+			return true;
+		end;
+		local horse = wavDir .."horse";
+		local cow = wavDir .."cow";
+		if (horse == nil) then
+			print("no Horse sounds found");
+		end;
+		if (cow == nil) then
+			print("no Cow sounds found");
+		end;
+	end;
