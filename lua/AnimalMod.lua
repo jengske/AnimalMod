@@ -7,7 +7,7 @@ AnimalMod.baseDir = g_currentModDirectory;
 if AnimalMod.baseDir:sub(-1) ~= '/' then
 	AnimalMod.baseDir = AnimalMod.baseDir .. '/';
 end;
-
+AnimalMod.fileFormats = {'wav', 'dds', 'i3d', 'xml', 'lua'};
 --local sonOfaBangSonOfaBoom = {
 --	['44d143f3e847254a55835a8298ba4e21'] = true;
 --	['6fbb6a98a4054b1d603bd8c591d572af'] = true;
