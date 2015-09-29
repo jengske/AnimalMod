@@ -15,7 +15,7 @@ a.stats.players = {}; -- info about our players
 -- general table structure to keep track of all --
 a.storages = {}; -- info about our storages /storage.lua 
 a.animals = {}; -- info about our animals / animalType.lua
-a.animal.sounds = {}; -- table to store sounds *.wav
+a.animals.sounds = {}; -- table to store sounds *.wav
 --a.husbandries = g;
 a.animals.g_animals = {}; -- game animals
 a.animals.f_animals = {}; -- fillType animals
