@@ -1,3 +1,7 @@
+-- AnimalMod: SoundUtils.lua
+-- Author: Dirk Peeters
+-- CopyRight: (c) 2011 - 2016 Peeters Dirk
+--------------------------------------------------
 AnimalMod.SoundUtils = {};
 AnimalMod.Utils:inheritsFrom( AnimalMod );
 -- to do: sound system: create a pool for sounds to be used during gameplay
