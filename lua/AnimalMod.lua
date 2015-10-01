@@ -34,6 +34,8 @@ AnimalMod.I3Ddir = baseDir .."i3d/"; -- i3d directory
 local i3dDir = AnimalMod.I3Ddir;
 AnimalMod.IMGdir = baseDir .."img/"; -- img directory
 local imgDir = AnimalMod.IMGdir;
+AnimalMod.HUDdir = baseDir .."img/hud/"; -- hud directory
+local hudDir = AnimalMod.HUDdir;
 AnimalMod.TRGdir = baseDir .."triggers/"; -- trigger directory
 local trgDir = AnimalMod.TRGdir;
 AnimalMod.WAVdir = baseDir .."sounds/"; -- sound directory, must be ordered sounds/animaltype
@@ -50,7 +52,8 @@ local filesToLoad = { -- place here new functions or addons for the mod, we will
   [4] = 'Names.lua', -- naming system
   [5] = 'Utils.lua',-- Utils default functions to make live easy
   [6] = 'SoundUtils.lua', -- Sound manager
-  [7] = 'AnimalTypes.lua'
+  [7] = 'AnimalTypes.lua',
+  [8] = 'RegisterLivestock.lua'
   }; 
 
 
@@ -73,7 +76,7 @@ end;
 
 letsStart();
 for k, v in pairs(AnimalMod) do
-	print(k, " = ", tostring(v));
+	--print(k, " = ", tostring(v));
 end;
 local function checkSoundDir()
 		if (wavDir ~= nil)then
@@ -91,3 +94,4 @@ local function checkSoundDir()
 			print("no Cow sounds found");
 		end;
 	end;
+checkSoundDir();
