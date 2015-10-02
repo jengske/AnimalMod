@@ -59,6 +59,11 @@
             <category>animals</category>
     </storeItem>
 </storeItems>-->
-
+<l10n>
+        <text name="test_owned">
+            <en>test</en>
+            <de>test</de>
+        </text>
+ </l10n>
 </modDesc>
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?> 
+<AnimalHusbandry type="test">
+	<annotation>Copyright 2015(C) Peeters Dirk, All Rights Reserved.</annotation>
+    <name>
+        <en>test</en>
+        <de>test</de>
+    </name>
+    <description></description>
+    <typeDesc>
+        <en>test</en>
+        <de>test</de>
+    </typeDesc>
+    <Attributes>
+      <Attribute name="liquidManureTriggerIndex" type="string" value="3"/>
+      <Attribute name="manureHeapIndex" type="string" value="2"/>
+      <Attribute name="milkRobotDoorYRotDelta" type="float" value="120"/>
+      <Attribute name="milkRobotEndDoorLeft" type="string" value="4|2"/>
+      <Attribute name="milkRobotEndDoorRight" type="string" value="4|3"/>
+      <Attribute name="milkRobotEndIndex" type="string" value="4|6"/>
+      <Attribute name="milkRobotStartDoorLeft" type="string" value="4|0"/>
+      <Attribute name="milkRobotStartDoorRight" type="string" value="4|1"/>
+      <Attribute name="milkRobotStartIndex" type="string" value="4|5"/>
+      <Attribute name="navMeshIndex" type="string" value="0"/>
+      <Attribute name="onCreate" type="string" value="4|5"/>
+      <Attribute name="placementRaycastDistance" type="float" value="2"/>
+      <Attribute name="produceMilk" type="bool" value="false"/>
+      <Attribute name="strawPlaneIndex" type="string" value="5"/>
+      <Attribute name="strawPlaneMinMaxY" type="float" value="114.7 115"/>
+      <Attribute name="tipTriggerIndex" type="string" value="1"/>
+      <Attribute name="typeName" type="string" value="test"/>
+      <Attribute name="useCowFeeding" type="bool" value="false"/>
+      <Attribute name="xmlFile" type="string" value="AnimalHusbandry.xml"/>
+      </Attributes>
+</AnimalHusbandry>
+

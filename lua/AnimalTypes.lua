@@ -20,6 +20,11 @@ AnimalType.Filename = "animalt.lua";
 
 local a = AnimalMod;
 local husbandries = {};
+local tmpHusbandries = {}; -- only to store the husbandry animals during load
+tmpHusbandries.cow = {};
+tmpHusbandries.sheep = {};
+tmpHusbandries.chicken = {};
+
 AnimalMod.NUM_ANIMALTYPES = 4;
 local unknown = "unknown";
 AnimalMod.ANIMALTYPE_UNKNOWN = 0;
@@ -203,34 +208,86 @@ function AnimalMod.registerAnimalType(name, nameI18N, pricePerLiter, litersPerSq
              AnimalMod.fillTypeToAnimalType[fillType] = AnimalMod.NUM_ANIMALTYPES;
              end;
              -- need to create a tmp storage and extra fucntion to check on loadmap
-             if (g_currentMission.husbandries[key3]) == nil then
-             g_currentMission.husbandries[key3] = AnimalMod.NUM_ANIMALTYPES;
-             AnimalMod.husbandriesTypeIndexToDesc[AnimalMod.NUM_ANIMALTYPES] = self;
-             
+             if (tmpHusbandries[key3]) == nil then -- if (g_currentMission.husbandries[key3]) == nil then
+              tmpHusbandries[key3] = {}; -- g_currentMission.husbandries[key3] = AnimalMod.NUM_ANIMALTYPES;
+              tmpHusbandries[key3].totalNumAnimals = 0;
+              setHusTable(name);
+              AnimalMod.husbandriesTypeIndexToDesc[AnimalMod.NUM_ANIMALTYPES] = self;
              end;
         print("AnimalMod.registerAnimalType: " ..name);
-    end
-end
+    end;
+end;
 
+function AnimalType:init()
+print("init before load");
+     for k,v in pairs(tmpHusbandries)do
+     
+           if (g_currentMission.husbandries[k]) == nil then
+           
+             g_currentMission.husbandries[k] = {};
+             g_currentMission.husbandries[k].totalNumAnimals = 0;
+             g_currentMission.husbandries[k] = tmpHusbandries[k]; --g_currentMission.husbandries.cow;
+             g_currentMission.husbandries[k].tipTriggersFillLevels = g_currentMission.husbandries.cow.tipTriggersFillLevels;
+             g_currentMission.husbandries[k].manureHeap = g_currentMission.husbandries.cow.manureHeap;
+             g_currentMission.husbandries[k].tipTriggers = g_currentMission.husbandries.cow.tipTriggers;
+             g_currentMission.husbandries[k].liquidManureTrigger = g_currentMission.husbandries.cow.liquidManureTrigger;
+             
+           end;
+           print("test: " ..type(tmpHusbandries[k]) .." vs " ..type(g_currentMission.husbandries[k]));
+            
+           --tmpHusbandries[k] = g_currentMission.husbandries[k];
+     end;
+for k,v in pairs(g_currentMission.husbandries.cow.tipTriggersFillLevels[12][1])do
+     print("tipTriggersFillLevels: " ..k .." = " ..tostring(v));
+end;
+-- for ks,vs in pairs(tmpHusbandries)do
+     -- print("tmpHusbandries: " ..ks .." = " ..tostring(vs));
+-- end;
+for _, location in pairs(g_currentMission.tipTriggers) do
+    if (location.isFarmTrigger) then
+      for index, _ in pairs(location.acceptedFillTypes) do
+        if location.animalHusbandry then
+          print("location.animalHusbandry: " ..location.id);
+               
+        end;
+      end;
+    end;
+  end;
+end;
 
 function AnimalType:loadMap(name)
  husbandries = g_currentMission.husbandries;
+ AnimalType:init();  
+ for animal , index in pairs (AnimalHusbandry) do
+ --print(animal, type(index))
+     -- for ind,valeu in pairs (index) do
+     -- print("AnimalTypes: " ..animal .." : " ..ind .." = " .. type(valeu));
+    -- end;
+ end;
+
+ for animals , tables in pairs (StoreItemsUtil.storeItemsByXMLFilename.chicken) do --VehicleTypeUtil.vehicleTypes.forwarder - StatisticView
+     --for inds,valeus in pairs (tables) do
+     
+     if (type(tables) == "string" or type(tables) == "number")then
+     print("(StoreItemsUtil: " ..animals .." : " ..tostring(tables));
+     elseif(type(tables) == "table") then
+          for k,v in pairs(tables)do
+               if (type(v) == "string" or type(v) == "number")then
+                    print("(StoreItemsUtil: " ..k .." : " ..tostring(v));
+               elseif(type(v) == "table") then
+                    print("(StoreItemsUtil: " ..k .." : " ..type(v));
+               end;
+          end;
+     end;
+    --end;
    
- for animal , index in pairs (AnimalMod.AnimalTypes) do
-     for ind,valeu in pairs (index) do
-     print("AnimalTypes: " ..animal .." : " ..ind .." = " .. tostring(valeu));
-    end;
+ end;
+ -----
+ buyAnimal("test", 2, 4);
+
+
+ 
 end;
-
-for animals , tables in pairs (AnimalMod.animalTypeIndexToDesc) do
-     for inds,valeus in pairs (tables) do
-     print("animalTypeIndexToDesc: " ..animals .." : " ..inds .." = " ..tostring(tables));
-    end;
-end;
-end;
-
-
-
 
 print("animal loaded " ..AnimalType.className .. " " ..AnimalType.intToName[1]);
 
@@ -265,20 +322,51 @@ function AnimalType:updateTick(dt)
 end;
 
 function AnimalType:update(dt)
-local cow = g_currentMission:getSiloAmount(Fillable.FILLTYPE_COW);
-local numcow = husbandries.cow.totalNumAnimals * 100;
 
-     if(husbandries.cow.totalNumAnimals > 0)then
-     --print(g_currentMission:getSiloAmount(Fillable.FILLTYPE_COW) + 1);
-          if( husbandries.cow.totalNumAnimals > cow) then
-          print("buy true store");
-               g_currentMission:setSiloAmount(Fillable.FILLTYPE_COW, g_currentMission:getSiloAmount(Fillable.FILLTYPE_COW) + 1);
+-- this is only for the in game animalTypes
+for animaltype, v in pairs (husbandries)do
+local key1 = "FILLTYPE_" ..string.upper(animaltype);
+local key2 = animaltype;
+local animal = g_currentMission:getSiloAmount(Fillable[key1]);
+local numanimal = 1;
+
+
+     if(husbandries[key2].totalNumAnimals > 0)then
+     
+          if( husbandries[key2].totalNumAnimals > animal) then
+          
+          g_currentMission:setSiloAmount(Fillable[key1], animal + numanimal);
+          print("buy true store: " ..key2);
           end;
-          if(husbandries.cow.totalNumAnimals < cow) then
-          print("sell true store");
-               g_currentMission:setSiloAmount(Fillable.FILLTYPE_COW, g_currentMission:getSiloAmount(Fillable.FILLTYPE_COW) - 1);
+          
+          if(husbandries[key2].totalNumAnimals < animal) then
+          
+          g_currentMission:setSiloAmount(Fillable[key1], animal - numanimal);
+          print("sell true store: " ..key2);
           end;
-     end
+          
+     end;
+end;
+
+end;
+
+function buyAnimal(animaltype, amount, position)
+if(position == 1 or position == 2 or position == 3)then 
+print("you can not use this function on the default animalTypes: " ..position); 
+return; 
+else
+local key = animaltype;
+husbandries[key].totalNumAnimals = husbandries[key].totalNumAnimals + amount;
+--table.insert(husbandries[key].numAnimals[0], amount);
+print("added " ..amount .." of aniamls to " ..animaltype);
+for k, v in pairs(husbandries[key].numAnimals)do
+print ("numAnimals: " ..k, v);
+husbandries[key].numAnimals[k] = amount;
+end;
+print(ShopScreen.PAGE_VEHICLE_CATEGORY); -- 5
+print(ShopScreen.TYPE_VEHICLE);
+end;
+
 end;
 
 function AnimalType:draw()
@@ -297,7 +385,95 @@ return AnimalType;
 end;
 
 
+function setHusTable(name)
 
+local tmpCattle = tmpHusbandries[name];
+tmpCattle.id = 26;
+--tmpCattle.tipTriggersFillLevels = g_currentMission.husbandries.cow.tipTriggersFillLevels; --{};
+-- AnimalHusbandry.20 = table: 0x1039f6f0
+-- AnimalHusbandry.21 = table: 0x103913f8
+-- AnimalHusbandry.10 = table: 0x1073a4f0
+-- AnimalHusbandry.12 = table: 0x10616e58
+tmpCattle.typeName = name;
+tmpCattle.updateMinutesInterval = 20;
+tmpCattle.totalNumAnimals = 0;
+tmpCattle.numObjectsInPalletSpawnerTrigger = 0;
+tmpCattle.strawPlaneMaxFillLevel = 18000;
+tmpCattle.husbandryId = 116619;
+tmpCattle.husbandryDirtyFlag = 1;
+tmpCattle.numVisibleAnimals = {[0] = 1, [1] = 0};
+-- AnimalHusbandry.0 = 1
+-- AnimalHusbandry.1 = 0
+tmpCattle.updateMinutes = 0;
+tmpCattle.fillLevelMilk = 0;
+tmpCattle.numSubTypes = 2;
+tmpCattle.nextDirtyFlag = 2;
+tmpCattle.productivity = 0;
+tmpCattle.strawPlaneMinY = 114.7;
+--tmpCattle.manureHeap = g_currentMission.husbandries.cow.manureHeap; --{};
+-- tmpCattle.manureHeap.movingId = 124908;
+-- tmpCattle.manureHeap.moveMaxY = 0;
+-- tmpCattle.manureHeap.fillType = 26;
+-- tmpCattle.manureHeap.vehiclesInRange = {};
+--return nothing 'nothing inrange'
+-- tmpCattle.manureHeap.infoTriggerId = 116650;
+-- tmpCattle.manureHeap.moneyChangeId = 99;
+-- tmpCattle.manureHeap.nodeId = 124907;
+-- tmpCattle.manureHeap.triggerMaxY = 0;
+-- tmpCattle.manureHeap.capacity = 400000;
+-- tmpCattle.manureHeap.triggerMinY = 0.4;
+-- tmpCattle.manureHeap.lastMoneyChange = -1;
+-- tmpCattle.manureHeap.fillLevel = 0;
+-- tmpCattle.manureHeap.triggerYPower = 0.5;
+-- tmpCattle.manureHeap.moveYPower = 0.5;
+-- tmpCattle.manureHeap.triggerId = 124909;
+-- tmpCattle.manureHeap.moveMinY = -3.9;
+-- tmpCattle.manureHeap.fillLevelObject = g_currentMission.husbandries.cow.fillLevelObject; --{} ;
+-- holds copy of self
+tmpCattle.baseDirectory = "";
+--tmpCattle.tipTriggers = g_currentMission.husbandries.cow.tipTriggers; -- {};
+-- tmpCattle.tipTriggers[1] = {};
+-- tmpCattle.tipTriggers[1].triggerStartId = 124885;
+-- tmpCattle.tipTriggers[1].triggerId = 124887;
+-- tmpCattle.tipTriggers[1].acceptedFillTypes = {};
+-- tmpCattle.tipTriggers[1].lastMoneyChange = -1;
+-- tmpCattle.tipTriggers[1].triggerWidth = 1.2000000476837;
+-- tmpCattle.tipTriggers[1].moveMinY = 0;
+-- tmpCattle.tipTriggers[1].triggerEndId = 124886;
+-- tmpCattle.tipTriggers[1].animalPlaces = {};
+-- tmpCattle.tipTriggers[1].id = 27;
+-- tmpCattle.tipTriggers[1].stationName = Station;
+-- tmpCattle.tipTriggers[1].rootNode = 124884;
+-- tmpCattle.tipTriggers[1].moneyChangeId = 96;
+-- tmpCattle.tipTriggers[1].triggerTipWidth = inf;
+-- tmpCattle.tipTriggers[1].nextDirtyFlag = 2;
+-- tmpCattle.tipTriggers[1].fillPlane = 124888;
+-- tmpCattle.tipTriggers[1].updateEventListeners = {};
+-- tmpCattle.tipTriggers[1].tipTriggerDirtyFlag = 1;
+-- tmpCattle.tipTriggers[1].animalHusbandry = {};
+-- tmpCattle.tipTriggers[1].moveMaxY = 0.5;
+-- tmpCattle.tipTriggers[1].moveBackScale = 8.3333333333333e-007;
+-- tmpCattle.tipTriggers[1].priceMultipliers = {};
+-- tmpCattle.tipTriggers[1].moveScale = 4.0000001899898e-005;
+-- tmpCattle.tipTriggers[1].dirtyMask = 0;
+-- tmpCattle.tipTriggers[1].shovelCatcherId = 124884;
+-- AnimalHusbandry.2 = table: 0x10515000
+-- AnimalHusbandry.3 = table: 0x1036e340
+	-- 1 trigger
+	-- 
+tmpCattle.strawPlaneId = 124924;
+tmpCattle.virtualToVisibleAnimals = {};
+tmpCattle.virtualToVisibleAnimals[1] = {visible = 6, virtual = 6};
+tmpCattle.virtualToVisibleAnimals[2] = {visible = 6, virtual = 6};
+-- AnimalHusbandry.1 = table: 0x108b4c70
+-- AnimalHusbandry.2 = table: 0x108b4cc0
+	-- AnimalHusbandry.visible = 6
+	-- AnimalHusbandry.virtual = 6
+--tmpCattle.liquidManureTrigger = g_currentMission.husbandries.cow.liquidManureTrigger; -- {};
+tmpCattle.numAnimals = {};
+tmpCattle.strawPlaneMaxY = 115;
+print("structure made");
+end;
 
 
 
